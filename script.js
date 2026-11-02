@@ -6,26 +6,34 @@
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   const mobileNavigation = document.querySelector('.mobile-navigation');
   const productGrid = document.querySelector('.product-grid');
+  const catalogPrompt = document.querySelector('.catalog-prompt');
+  const collectionMore = document.querySelector('.collection-more');
+  const productDetail = document.querySelector('.product-detail');
+  const productDetailImage = document.querySelector('#product-detail-image');
+  const productDetailCategory = document.querySelector('#product-detail-category');
+  const productDetailTitle = document.querySelector('#product-detail-title');
+  const productDetailDescription = document.querySelector('#product-detail-description');
+  const productDetailContact = document.querySelector('#product-detail-contact');
   const filterButtons = [...document.querySelectorAll('.filter-button')];
 
   // Keep these filenames in sync with the files in each images/<category>/ folder.
   const catalog = [
     {
-      category: 'Sofas', folder: 'sofas', description: 'Sofa thiết kế VENUS', fallback: 'photo-1555041469-a586c61ea9bc',
+      category: 'Sofas', folder: 'sofas', description: 'Sofa thiết kế VENUS',
       files: [
         'Sofa Bạch Dương.jpg', 'Sofa Hỏa Tước.jpg', 'Sofa Khối Tĩnh.jpg',
         'Sofa Mây Xám.jpg', 'Sofa Oliva.jpg', 'Sofa Rêu Phong.jpg', 'Sofa Twilight.jpg',
       ],
     },
     {
-      category: 'Thảm', folder: 'thảm', description: 'Thảm trang trí VENUS', fallback: 'photo-1600166898405-da9535204843',
+      category: 'Thảm', folder: 'thảm', description: 'Thảm trang trí VENUS',
       files: [
         'Thảm Ba Tư .jpg', 'Thảm Bohemian.jpg', 'Thảm Bắc Âu.jpg', 'Thảm Champagne Silk.jpg',
         'Thảm Dạ Cổ.jpg', 'Thảm Shiraz.jpg', 'Thảm Snow Flake.jpg', 'Thảm Vòng Trăng.jpg',
       ],
     },
     {
-      category: 'Giường', folder: 'giường', description: 'Giường ngủ VENUS', fallback: 'photo-1505693416388-ac5ce068fe85',
+      category: 'Giường', folder: 'giường', description: 'Giường ngủ VENUS',
       files: [
         'Giường Cloud.jpg', 'Giường Dạ Khúc.jpg', 'Giường Elysian.jpg', 'Giường Heritage.jpg',
         'Giường Minimal.jpg', 'Giường Monochic.jpg', 'Giường Nocturne.jpg',
@@ -33,14 +41,14 @@
       ],
     },
     {
-      category: 'Bàn', folder: 'bàn', description: 'Bàn thiết kế VENUS', fallback: 'photo-1499933374294-4584851497cc',
+      category: 'Bàn', folder: 'bàn', description: 'Bàn thiết kế VENUS',
       files: [
         'Bàn Horizon.jpg', 'Bàn Sole.jpg', 'Bàn Solstice.jpg', 'Bàn trà Glass Box.jpg',
         'Bàn trà Oval Sồi.jpg', 'Bàn trà Terra.jpg', 'Bàn ăn Tròn Aurelia.jpg', 'Grand Circle.jpg',
       ],
     },
     {
-      category: 'Ghế', folder: 'ghế', description: 'Ghế thiết kế VENUS', fallback: 'photo-1503602642458-232111445657',
+      category: 'Ghế', folder: 'ghế', description: 'Ghế thiết kế VENUS',
       files: [
         'Ghế Bubble .jpg', 'Ghế bành Mid-Century Green.jpg', 'Ghế Bạch Tuyết.jpg',
         'Ghế Celeste .jpg', 'Ghế Harmony.jpg', 'ghế Hygge Loung.jpg', 'Ghế Indigo.jpg',
@@ -49,7 +57,7 @@
       ],
     },
     {
-      category: 'Tủ kệ', folder: 'tủ kệ', description: 'Tủ kệ thiết kế VENUS', fallback: 'photo-1595428774223-ef52624120d2',
+      category: 'Tủ kệ', folder: 'tủ kệ', description: 'Tủ kệ thiết kế VENUS',
       files: [
         'Hệ tủ Veneto.jpg', 'Kệ Atelier.jpg', 'Kệ treo tường Loft.jpg', 'Kệ Tĩnh Lặng.jpg',
         'Tủ console Arch Luxury.jpg', 'Tủ Mộc Lan.jpg', 'Tủ tivi An Nhiên.jpg',
@@ -57,7 +65,7 @@
       ],
     },
     {
-      category: 'Đèn', folder: 'đèn', description: 'Đèn trang trí VENUS', fallback: 'photo-1507473885765-e6ed057f782c',
+      category: 'Đèn', folder: 'đèn', description: 'Đèn trang trí VENUS',
       files: [
         'Bộ đèn thả đồng nguyên khối.jpg', 'Đèn bàn nón đồng.jpg',
         'Đèn chùm cổ điển Regent.jpg', 'Đèn chùm pha lê Versailles.jpg',
@@ -67,7 +75,7 @@
       ],
     },
     {
-      category: 'Decor', folder: 'decor', description: 'Đồ trang trí VENUS', fallback: 'photo-1578500494198-246f612d3b3d',
+      category: 'Decor', folder: 'decor', description: 'Đồ trang trí VENUS',
       files: [
         'Chăn phủ Bắc Âu Monochic.jpg', 'Chăn phủ ca-rô hồng trầ.jpg',
         'Chăn phủ thú cao cấp.jpg', 'Gối dệt ngôi sao.jpg', 'Gối Fur Gold.jpg',
@@ -77,20 +85,21 @@
   ];
 
   const productCards = [];
-  catalog.forEach(({ category, folder, description, fallback, files }) => {
+  catalog.forEach(({ category, folder, description, files }) => {
     files.forEach((filename) => {
       const name = filename.replace(/\.[^.]+$/, '').trim();
       const image = document.createElement('img');
-      image.src = `images/${folder}/${filename}`;
+      image.dataset.src = `images/optimized/${folder}/${filename}`;
       image.alt = name;
       image.loading = 'lazy';
-      image.addEventListener('error', () => {
-        image.src = `https://images.unsplash.com/${fallback}?auto=format&fit=crop&w=1000&q=85`;
-      }, { once: true });
-
-      const imageLink = document.createElement('a');
+      image.decoding = 'async';
+      const imageLink = document.createElement('button');
       imageLink.className = 'product-image';
-      imageLink.href = '#contact';
+      imageLink.type = 'button';
+      imageLink.setAttribute('aria-label', `Xem chi tiết ${name}`);
+      imageLink.dataset.productName = name;
+      imageLink.dataset.productCategory = category;
+      imageLink.dataset.productImage = `images/optimized/${folder}/${filename}`;
       imageLink.append(image);
 
       const action = document.createElement('span');
@@ -122,6 +131,28 @@
       productGrid.append(card);
       productCards.push(card);
     });
+  });
+
+  productGrid.addEventListener('click', (event) => {
+    const productButton = event.target.closest('.product-image');
+    if (!productButton) return;
+
+    const { productName, productCategory, productImage } = productButton.dataset;
+    productDetailImage.src = productImage;
+    productDetailImage.alt = productName;
+    productDetailCategory.textContent = productCategory;
+    productDetailTitle.textContent = `About ${productName}`;
+    productDetailDescription.textContent = `${productName} là thiết kế được VENUS tuyển chọn cho không gian sống tinh tế và tiện nghi. Liên hệ VENUS để được tư vấn chi tiết về chất liệu, kích thước và tình trạng sản phẩm.`;
+    productDetailContact.href = `mailto:hello@venus.vn?subject=${encodeURIComponent(`Tư vấn sản phẩm ${productName}`)}`;
+    productDetail.showModal();
+  });
+
+  productDetail.querySelector('.product-detail-close').addEventListener('click', () => productDetail.close());
+  productDetail.addEventListener('click', (event) => {
+    if (event.target === productDetail) productDetail.close();
+  });
+  productDetail.addEventListener('close', () => {
+    productDetailImage.removeAttribute('src');
   });
 
   const closeMenus = () => {
@@ -172,6 +203,7 @@
   });
 
   const setFilter = (category) => {
+    const hasSelection = Boolean(category);
     filterButtons.forEach((button) => {
       const isActive = button.dataset.filter === category;
       button.classList.toggle('is-active', isActive);
@@ -180,8 +212,15 @@
     productCards.forEach((card, index) => {
       const isVisible = category === 'all' || card.dataset.category === category;
       card.classList.toggle('is-hidden', !isVisible);
+      const image = card.querySelector('img');
+      if (isVisible && image.dataset.src) {
+        image.src = image.dataset.src;
+        delete image.dataset.src;
+      }
       if (isVisible) card.style.animationDelay = `${Math.min(index % 4, 3) * 45}ms`;
     });
+    catalogPrompt.hidden = hasSelection;
+    collectionMore.hidden = !hasSelection;
   };
 
   filterButtons.forEach((button) => {
@@ -190,6 +229,7 @@
   document.querySelectorAll('[data-filter-link]').forEach((link) => {
     link.addEventListener('click', () => setFilter(link.dataset.filterLink));
   });
+  setFilter(null);
 
   const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
   updateHeader();
