@@ -77,7 +77,7 @@
     {
       category: 'Decor', folder: 'decor', description: 'Đồ trang trí VENUS',
       files: [
-        'Chăn phủ Bắc Âu Monochic.jpg', 'Chăn phủ ca-rô hồng trầ.jpg',
+        'Chăn phủ Bắc Âu Monochic.jpg', 'Chăn phủ ca-rô hồng .jpg',
         'Chăn phủ thú cao cấp.jpg', 'Gối dệt ngôi sao.jpg', 'Gối Fur Gold.jpg',
         'Gối Stripe Luxury.jpg', 'Gối Thổ Cẩm Nomad.jpg',
       ],
@@ -142,7 +142,7 @@
     productDetailImage.alt = productName;
     productDetailCategory.textContent = productCategory;
     productDetailTitle.textContent = `About ${productName}`;
-    productDetailDescription.textContent = `${productName} là thiết kế được VENUS tuyển chọn cho không gian sống tinh tế và tiện nghi. Liên hệ VENUS để được tư vấn chi tiết về chất liệu, kích thước và tình trạng sản phẩm.`;
+    productDetailDescription.textContent = `${productName} là thiết kế thuộc danh mục ${productCategory.toLowerCase()}, được tuyển chọn cho không gian sống tinh tế và tiện nghi. Liên hệ VENUS để được tư vấn chi tiết về chất liệu, kích thước và tình trạng sản phẩm.`;
     productDetailContact.href = `mailto:hello@venus.vn?subject=${encodeURIComponent(`Tư vấn sản phẩm ${productName}`)}`;
     productDetail.showModal();
   });
