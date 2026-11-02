@@ -1,0 +1,22 @@
+:root{--ink:#171614;--muted:#77736d;--paper:#fbf9f5;--gold:#a98c5c;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',Arial,sans-serif}
+*{box-sizing:border-box}
+html{min-width:320px;scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.skip-link{position:fixed;z-index:5;top:8px;left:8px;padding:10px 14px;background:#fff;transform:translateY(-150%)}.skip-link:focus{transform:translateY(0)}
+.design-header{display:flex;height:72px;justify-content:space-between;align-items:center;padding:0 5.2vw;border-bottom:1px solid #eeece8}
+.design-brand{font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:.2em}.design-brand span{color:var(--gold)}
+.back-link{display:inline-flex;align-items:center;gap:11px;color:#625f59;font-size:10px;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}.back-link:hover{color:var(--gold)}.back-link span{font-size:17px}
+.design-main{min-height:calc(100vh - 152px);padding:48px 5.2vw 92px}
+.design-page-heading{margin-bottom:48px}.design-eyebrow{display:block;margin-bottom:12px;color:#8e806b;font-size:9px;letter-spacing:.2em}.design-page-heading h1{margin:0;font-size:clamp(30px,3vw,40px);font-weight:600;letter-spacing:-.04em}.design-page-heading p{margin:10px 0 0;color:var(--muted);font-size:12px;line-height:1.7}
+.designer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.designer-card{width:100%;max-width:620px}
+.designer-portrait{position:relative;display:grid;min-height:400px;aspect-ratio:.84;place-items:center;overflow:hidden;background:#d4cec3;color:#35332f}
+.portrait-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;transition:transform .7s ease}.designer-card:hover .portrait-photo{transform:scale(1.025)}
+.designer-portrait:before{position:absolute;z-index:1;inset:18px;border:1px solid rgba(255,255,255,.65);content:"";pointer-events:none}
+.portrait-index,.portrait-caption{position:absolute;z-index:2;left:30px;padding:5px 7px;background:rgba(251,249,245,.78);color:rgba(38,36,32,.78);font-size:8px;letter-spacing:.18em}.portrait-index{top:31px}.portrait-index i{padding:0 6px;color:var(--gold);font-style:normal}.portrait-caption{bottom:33px}
+.designer-details{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:18px}.designer-role{color:#8f877c;font-size:8px;letter-spacing:.16em}.designer-details h2{margin:5px 0 0;font-family:var(--serif);font-size:clamp(20px,2.1vw,27px);font-weight:400;letter-spacing:-.02em}.designer-contact{display:grid;width:38px;height:38px;flex:0 0 auto;place-items:center;border:1px solid rgba(13,13,13,.22);border-radius:50%;color:var(--gold);font-size:16px;transition:background .2s,color .2s,transform .2s}.designer-contact:hover{background:#171614;color:#fff;transform:translate(2px,-2px)}
+.design-footer{display:flex;min-height:80px;justify-content:space-between;align-items:center;gap:20px;padding:20px 5.2vw;border-top:1px solid #eeece8;color:#77736d;font-size:8px;letter-spacing:.12em}.design-footer a{color:#292722;transition:color .2s}.design-footer a:hover{color:var(--gold)}.design-footer a span{margin-left:7px;color:var(--gold)}
+@media(max-width:760px){.design-header{height:64px;padding:0 22px}.design-brand{font-size:21px}.back-link{font-size:8px}.design-main{min-height:calc(100vh - 136px);padding:36px 22px 68px}.design-page-heading{margin-bottom:30px}.design-page-heading p{max-width:340px}.designer-grid{grid-template-columns:minmax(0,1fr);gap:30px}.designer-card{max-width:520px}.designer-portrait{min-height:360px;aspect-ratio:.95}.portrait-monogram{font-size:clamp(95px,27vw,150px)}.design-footer{align-items:flex-start;flex-direction:column;justify-content:center;gap:8px;padding:20px 22px;font-size:7px}}
+@media(max-width:380px){.designer-portrait{min-height:320px}.portrait-index,.portrait-caption{left:25px}.portrait-index{top:27px}.portrait-caption{bottom:28px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}

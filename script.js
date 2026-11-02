@@ -19,7 +19,7 @@
   // Keep these filenames in sync with the files in each images/<category>/ folder.
   const catalog = [
     {
-      category: 'Sofas', folder: 'sofas', description: 'Sofa thiết kế VENUS',
+      category: 'Sofas', folder: 'sofas', description: 'Sofa',
       files: [
         'Sofa Bạch Dương.jpg', 'Sofa Hỏa Tước.jpg', 'Sofa Khối Tĩnh.jpg',
         'Sofa Mây Xám.jpg', 'Sofa Oliva.jpg', 'Sofa Rêu Phong.jpg', 'Sofa Twilight.jpg',
@@ -77,7 +77,7 @@
     {
       category: 'Decor', folder: 'decor', description: 'Đồ trang trí VENUS',
       files: [
-        'Chăn phủ Bắc Âu Monochic.jpg', 'Chăn phủ ca-rô hồng .jpg',
+        'Chăn phủ Bắc Âu Monochic.jpg', { filename: 'Chăn phủ ca-rô hồng trầ.jpg', name: 'Chăn phủ ca-rô hồng trầm' },
         'Chăn phủ thú cao cấp.jpg', 'Gối dệt ngôi sao.jpg', 'Gối Fur Gold.jpg',
         'Gối Stripe Luxury.jpg', 'Gối Thổ Cẩm Nomad.jpg',
       ],
@@ -86,8 +86,9 @@
 
   const productCards = [];
   catalog.forEach(({ category, folder, description, files }) => {
-    files.forEach((filename) => {
-      const name = filename.replace(/\.[^.]+$/, '').trim();
+    files.forEach((product) => {
+      const filename = typeof product === 'string' ? product : product.filename;
+      const name = typeof product === 'string' ? filename.replace(/\.[^.]+$/, '').trim() : product.name;
       const image = document.createElement('img');
       image.dataset.src = `images/optimized/${folder}/${filename}`;
       image.alt = name;
