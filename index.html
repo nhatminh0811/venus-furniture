@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="catalog-data.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -20,44 +21,21 @@
         <span></span><span></span>
       </button>
       <nav class="primary-nav nav-left" aria-label="Điều hướng chính">
-        <button class="nav-link products-trigger" type="button" aria-expanded="false" aria-controls="mega-menu">Products <span class="nav-chevron" aria-hidden="true">⌄</span></button>
+        <a class="nav-link" href="catalog.html">Products</a>
         <a class="nav-link" href="#rooms">Rooms</a>
-        <a class="nav-link" href="#real-estate">Real Estate</a>
+        <a class="nav-link" href="projects.html">Không gian</a>
         <a class="nav-link" href="#philosophy">Philosophy</a>
       </nav>
-      <a class="brand" href="" aria-label="VENUS — về đầu trang">VENUS<span class="brand-period">.</span></a>
+      <a class="brand" href="#top" aria-label="VENUS — về đầu trang">VENUS<span class="brand-period">.</span></a>
       <nav class="primary-nav nav-right" aria-label="Thông tin VENUS">
-
         <a class="nav-link" href="designs.html">Designer</a>
-  
-        <a class="header-search" href="#collection" aria-label="Tìm kiếm sản phẩm"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"></circle><path d="m15.5 15.5 4.2 4.2"></path></svg></a>
+        <a class="header-search" href="catalog.html" aria-label="Tìm kiếm sản phẩm"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"></circle><path d="m15.5 15.5 4.2 4.2"></path></svg></a>
       </nav>
     </div>
-    <div class="mega-menu" id="mega-menu" aria-hidden="true">
-      <div class="mega-inner">
-        <div class="mega-intro"><span class="eyebrow">VENUS COLLECTIONS</span><p>Những hình thái mới<br>cho cuộc sống thường nhật.</p></div>
-        <div class="mega-categories" aria-label="Danh mục sản phẩm">
-          <a href="#collection" data-filter-link="Sofas">Sofas <span>01</span></a>
-          <a href="#collection" data-filter-link="Thảm">Thảm <span>02</span></a>
-          <a href="#collection" data-filter-link="Giường">Giường <span>03</span></a>
-          <a href="#collection" data-filter-link="Bàn">Bàn <span>04</span></a>
-          <a href="#collection" data-filter-link="Ghế">Ghế <span>05</span></a>
-          <a href="#collection" data-filter-link="Tủ kệ">Tủ kệ <span>06</span></a>
-          <a href="#collection" data-filter-link="Đèn">Đèn <span>07</span></a>
-          <a href="#collection" data-filter-link="Decor">Decor <span>08</span></a>
-        </div>
-        <a class="mega-feature" href="#collection" aria-label="Khám phá bộ sưu tập mới">
-          <img src="images/optimized/room-living.jpg" alt="Không gian nội thất VENUS với sắc độ trầm ấm">
-          <span>Khám phá bộ sưu tập <span aria-hidden="true">↗</span></span>
-        </a>
-      </div>
-    </div>
     <nav class="mobile-navigation" id="mobile-navigation" aria-label="Điều hướng di động" aria-hidden="true">
-      <a href="#collection">Products</a><a href="#real-estate">Real Estate</a><a href="#philosophy">Philosophy</a></a><a href="designs.html">Designer</a>
+      <a href="catalog.html">Products</a><a href="projects.html">Không gian</a><a href="#philosophy">Philosophy</a><a href="designs.html">Designer</a><a href="contact.html">Contact</a>
     </nav>
   </header>
-  <div class="menu-scrim" aria-hidden="true"></div>
-
   <main id="main">
     <section class="hero" aria-label="VENUS collections">
       <img class="hero-image" src="images/optimized/hero-banner.jpg" alt="Không gian nội thất VENUS với ánh sáng ấm và thiết kế tinh tế">
@@ -73,7 +51,7 @@
     <section class="intro section-pad" id="philosophy">
       <span class="eyebrow">THE VENUS APPROACH</span>
       <p class="intro-statement">Chúng tôi tin rằng vẻ đẹp thực sự không phô trương — nó được cảm nhận trong <em>từng đường nét, chất liệu và khoảnh khắc sống.</em></p>
-      <a class="text-link dark-link" href="#designer">Tìm hiểu triết lý của chúng tôi <span aria-hidden="true">↗</span></a>
+      <a class="text-link dark-link" href="designs.html">Tìm hiểu triết lý của chúng tôi <span aria-hidden="true">↗</span></a>
     </section>
 
     <section class="news-section section-pad" id="rooms">
@@ -106,7 +84,7 @@
         <p>Mỗi thiết kế là một cuộc đối thoại giữa hình khối, công năng và cảm xúc.</p>
       </div>
       <div class="filter-row" role="group" aria-label="Lọc sản phẩm theo danh mục">
-        <button class="filter-button" type="button" data-filter="all" aria-pressed="false">Tất cả</button>
+        <button class="filter-button" type="button" data-filter="featured" aria-pressed="false">Sản phẩm nổi bật</button>
         <button class="filter-button" type="button" data-filter="Sofas" aria-pressed="false">Sofas</button>
         <button class="filter-button" type="button" data-filter="Thảm" aria-pressed="false">Thảm</button>
         <button class="filter-button" type="button" data-filter="Giường" aria-pressed="false">Giường</button>
@@ -117,8 +95,9 @@
         <button class="filter-button" type="button" data-filter="Decor" aria-pressed="false">Decor</button>
       </div>
       <div class="product-grid" aria-live="polite"></div>
+      <p class="price-disclaimer">Giá tham khảo. Vui lòng liên hệ để xác nhận giá bán chính thức.</p>
       <p class="catalog-prompt" role="status">Chọn một danh mục để khám phá các sản phẩm của VENUS.</p>
-      <div class="collection-more" hidden><a class="text-link dark-link" href="#collection">Khám phá toàn bộ bộ sưu tập <span aria-hidden="true">↗</span></a></div>
+      <div class="collection-more"><a class="text-link dark-link" href="catalog.html">Khám phá toàn bộ bộ sưu tập <span aria-hidden="true">↗</span></a></div>
     </section>
 
     <dialog class="product-detail" aria-labelledby="product-detail-title">
@@ -129,7 +108,11 @@
           <span class="eyebrow" id="product-detail-category"></span>
           <h2 id="product-detail-title"></h2>
           <p id="product-detail-description"></p>
-          <a class="text-link dark-link" id="product-detail-contact" href="mailto:hello@venus.vn">Liên hệ tư vấn <span aria-hidden="true">↗</span></a>
+          <p class="product-price-detail" id="product-detail-price"></p>
+          <dl class="product-spec-list" id="product-detail-specs"></dl>
+          <p class="product-data-note">Giá, mô tả và thông số chỉ mang tính tham khảo. Vui lòng liên hệ để xác nhận giá bán chính thức.</p>
+          <a class="text-link dark-link" id="product-detail-full" href="catalog.html">Xem thông tin sản phẩm <span aria-hidden="true">↗</span></a>
+          <a class="text-link dark-link" id="product-detail-contact" href="mailto:hoaiminh@venus.vn">Liên hệ tư vấn <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </dialog>
@@ -147,17 +130,17 @@
 
   <footer class="site-footer" id="contact">
     <div class="service-grid">
-      <a class="service-card" href="mailto:hello@venus.vn"><span class="eyebrow">01 / HERE TO HELP</span><h2>Contacts</h2><p>Đội ngũ tư vấn luôn sẵn sàng lắng nghe.</p><span class="service-arrow">↗</span></a>
-      <a class="service-card" href="#collection"><span class="eyebrow">02 / FIND INSPIRATION</span><h2>Catalogues</h2><p>Khám phá những bộ sưu tập mới nhất của VENUS.</p><span class="service-arrow">↗</span></a>
-      <div class="service-card newsletter-card" id="journal"><span class="eyebrow">03 / NOTES FROM VENUS</span><h2>Newsletter</h2><p>Nhận câu chuyện, cảm hứng và tin tức tuyển chọn.</p><form class="newsletter-form"><label class="visually-hidden" for="newsletter-email">Địa chỉ email</label><input id="newsletter-email" type="email" placeholder="Địa chỉ email của bạn" required><button type="submit" aria-label="Đăng ký nhận tin">→</button></form><span class="newsletter-status" aria-live="polite"></span></div>
+      <a class="service-card" href="mailto:hoaiminh@venus.vn"><span class="eyebrow">01 / HERE TO HELP</span><h2>Contacts</h2><p>Đội ngũ tư vấn luôn sẵn sàng lắng nghe.</p><span class="service-arrow">↗</span></a>
+      <a class="service-card" href="projects.html"><span class="eyebrow">02 / FIND INSPIRATION</span><h2>Spaces</h2><p>Khám phá những gợi ý không gian từ VENUS.</p><span class="service-arrow">↗</span></a>
+      <div class="service-card newsletter-card" id="journal"><span class="eyebrow">03 / NOTES FROM VENUS</span><h2>Newsletter</h2><p>Liên hệ VENUS để nhận câu chuyện và cảm hứng mới.</p><a class="newsletter-link" href="mailto:hoaiminh@venus.vn?subject=Đăng%20ký%20nhận%20tin%20VENUS">Đăng ký qua email <span aria-hidden="true">↗</span></a></div>
     </div>
     <div class="footer-main">
-      <div class="footer-brand-block"><a class="footer-brand" href="">VENUS<span>.</span></a><p>Sartorial creations for living.</p><div class="social-links"><a href="#instagram" aria-label="Instagram">IG</a><a href="#pinterest" aria-label="Pinterest">PI</a><a href="#facebook" aria-label="Facebook">FB</a></div></div>
-      <div class="footer-column"><span class="eyebrow">EXPLORE</span><a href="#collection">Products</a><a href="#rooms">Rooms</a><a href="#real-estate">Real Estate</a><a href="#philosophy">Philosophy</a></div>
-      <div class="footer-column" id="stores"><span class="eyebrow">DISCOVER</span><a href="#stores">Our stores</a><a href="designs.html">Designers</a><a href="#journal">Journal</a><a href="#contact">Contact</a></div>
-      <div class="footer-column"><span class="eyebrow">FOLLOW THE DETAILS</span><p>Ho Chi Minh City<br>Vietnam</p><a href="mailto:hello@venus.vn">minhnguyenhoai@venus.vn</a></div>
+      <div class="footer-brand-block"><a class="footer-brand" href="index.html">VENUS<span>.</span></a><p>Sartorial creations for living.</p><a href="mailto:hoaiminh@venus.vn">Liên hệ qua email ↗</a></div>
+      <div class="footer-column"><span class="eyebrow">EXPLORE</span><a href="catalog.html">Products</a><a href="shop-by-room.html?room=living">Phòng khách</a><a href="shop-by-room.html?room=dining">Phòng ăn</a><a href="shop-by-room.html?room=bedroom">Phòng ngủ</a></div>
+      <div class="footer-column"><span class="eyebrow">DISCOVER</span><a href="contact.html">Liên hệ & showroom</a><a href="designs.html">Designers</a><a href="projects.html">Không gian cảm hứng</a><a href="support.html">Hỗ trợ & chính sách</a></div>
+      <div class="footer-column"><span class="eyebrow">FOLLOW THE DETAILS</span><p>Ho Chi Minh City<br>Vietnam</p><a href="mailto:hoaiminh@venus.vn">hoaiminh@venus.vn</a></div>
     </div>
-    <div class="footer-bottom"><span>© © 2026 VENUS by Nguyễn Hoài Minh. All rights reserved</span><div><a href="#privacy">Privacy policy</a><a href="#terms">Terms & conditions</a></div><a href="#top">Back to top ↑</a></div>
+    <div class="footer-bottom"><span>© 2026 VENUS by Nguyễn Hoài Minh. All rights reserved</span><div><a href="support.html#privacy">Quyền riêng tư</a><a href="support.html#terms">Điều khoản</a></div><a href="#top">Back to top ↑</a></div>
   </footer>
 </body>
 </html>

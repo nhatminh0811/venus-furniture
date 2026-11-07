@@ -1,8 +1,5 @@
 (() => {
   const header = document.querySelector('.site-header');
-  const productsTrigger = document.querySelector('.products-trigger');
-  const megaMenu = document.querySelector('.mega-menu');
-  const scrim = document.querySelector('.menu-scrim');
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   const mobileNavigation = document.querySelector('.mobile-navigation');
   const productGrid = document.querySelector('.product-grid');
@@ -13,82 +10,18 @@
   const productDetailCategory = document.querySelector('#product-detail-category');
   const productDetailTitle = document.querySelector('#product-detail-title');
   const productDetailDescription = document.querySelector('#product-detail-description');
+  const productDetailPrice = document.querySelector('#product-detail-price');
+  const productDetailSpecs = document.querySelector('#product-detail-specs');
   const productDetailContact = document.querySelector('#product-detail-contact');
   const filterButtons = [...document.querySelectorAll('.filter-button')];
 
-  // Keep these filenames in sync with the files in each images/<category>/ folder.
-  const catalog = [
-    {
-      category: 'Sofas', folder: 'sofas', description: 'Sofa',
-      files: [
-        'Sofa Bạch Dương.jpg', 'Sofa Hỏa Tước.jpg', 'Sofa Khối Tĩnh.jpg',
-        'Sofa Mây Xám.jpg', 'Sofa Oliva.jpg', 'Sofa Rêu Phong.jpg', 'Sofa Twilight.jpg',
-      ],
-    },
-    {
-      category: 'Thảm', folder: 'thảm', description: 'Thảm trang trí VENUS',
-      files: [
-        'Thảm Ba Tư .jpg', 'Thảm Bohemian.jpg', 'Thảm Bắc Âu.jpg', 'Thảm Champagne Silk.jpg',
-        'Thảm Dạ Cổ.jpg', 'Thảm Shiraz.jpg', 'Thảm Snow Flake.jpg', 'Thảm Vòng Trăng.jpg',
-      ],
-    },
-    {
-      category: 'Giường', folder: 'giường', description: 'Giường ngủ VENUS',
-      files: [
-        'Giường Cloud.jpg', 'Giường Dạ Khúc.jpg', 'Giường Elysian.jpg', 'Giường Heritage.jpg',
-        'Giường Minimal.jpg', 'Giường Monochic.jpg', 'Giường Nocturne.jpg',
-        'Giường Rattan Mộc.jpg', 'Giường Seaside.jpg',
-      ],
-    },
-    {
-      category: 'Bàn', folder: 'bàn', description: 'Bàn thiết kế VENUS',
-      files: [
-        'Bàn Horizon.jpg', 'Bàn Sole.jpg', 'Bàn Solstice.jpg', 'Bàn trà Glass Box.jpg',
-        'Bàn trà Oval Sồi.jpg', 'Bàn trà Terra.jpg', 'Bàn ăn Tròn Aurelia.jpg', 'Grand Circle.jpg',
-      ],
-    },
-    {
-      category: 'Ghế', folder: 'ghế', description: 'Ghế thiết kế VENUS',
-      files: [
-        'Ghế Bubble .jpg', 'Ghế bành Mid-Century Green.jpg', 'Ghế Bạch Tuyết.jpg',
-        'Ghế Celeste .jpg', 'Ghế Harmony.jpg', 'ghế Hygge Loung.jpg', 'Ghế Indigo.jpg',
-        'Ghế Ivory Royal.jpg', 'Ghế Mây.jpg', 'Ghế Serein Lounge.jpg', 'Ghế Solitude.jpg',
-        'Ghế Urban Grey.jpg', 'Ghế Velvet Heritage.jpg',
-      ],
-    },
-    {
-      category: 'Tủ kệ', folder: 'tủ kệ', description: 'Tủ kệ thiết kế VENUS',
-      files: [
-        'Hệ tủ Veneto.jpg', 'Kệ Atelier.jpg', 'Kệ treo tường Loft.jpg', 'Kệ Tĩnh Lặng.jpg',
-        'Tủ console Arch Luxury.jpg', 'Tủ Mộc Lan.jpg', 'Tủ tivi An Nhiên.jpg',
-        'Tủ trang trí Louver.jpg',
-      ],
-    },
-    {
-      category: 'Đèn', folder: 'đèn', description: 'Đèn trang trí VENUS',
-      files: [
-        'Bộ đèn thả đồng nguyên khối.jpg', 'Đèn bàn nón đồng.jpg',
-        'Đèn chùm cổ điển Regent.jpg', 'Đèn chùm pha lê Versailles.jpg',
-        'Đèn cây Regent Floor.jpg', 'Đèn Minimal.jpg', 'Đèn sóng lượn Pleat.jpg',
-        'Đèn thả mây đan.jpg', 'Đèn thả trần Eclipse.jpg',
-        'Đèn thả trần điêu khắc Organica.jpg', 'Đèn thả trụ đen tối giản.jpg',
-      ],
-    },
-    {
-      category: 'Decor', folder: 'decor', description: 'Đồ trang trí VENUS',
-      files: [
-        'Chăn phủ Bắc Âu Monochic.jpg', { filename: 'Chăn phủ ca-rô hồng trầ.jpg', name: 'Chăn phủ ca-rô hồng trầm' },
-        'Chăn phủ thú cao cấp.jpg', 'Gối dệt ngôi sao.jpg', 'Gối Fur Gold.jpg',
-        'Gối Stripe Luxury.jpg', 'Gối Thổ Cẩm Nomad.jpg',
-      ],
-    },
-  ];
-
+  const catalog = window.VENUS_CATALOG;
   const productCards = [];
   catalog.forEach(({ category, folder, description, files }) => {
     files.forEach((product) => {
       const filename = typeof product === 'string' ? product : product.filename;
       const name = typeof product === 'string' ? filename.replace(/\.[^.]+$/, '').trim() : product.name;
+      const productDetails = typeof product === 'string' ? null : product.details;
       const image = document.createElement('img');
       image.dataset.src = `images/optimized/${folder}/${filename}`;
       image.alt = name;
@@ -101,6 +34,9 @@
       imageLink.dataset.productName = name;
       imageLink.dataset.productCategory = category;
       imageLink.dataset.productImage = `images/optimized/${folder}/${filename}`;
+      imageLink.dataset.productDescription = productDetails.description;
+      imageLink.dataset.productSpecs = JSON.stringify(productDetails.specs);
+      imageLink.dataset.productPrice = String(productDetails.price);
       imageLink.append(image);
 
       const action = document.createElement('span');
@@ -118,7 +54,10 @@
       title.textContent = name;
       const subtitle = document.createElement('span');
       subtitle.textContent = description;
-      descriptionBlock.append(title, subtitle);
+      const price = document.createElement('span');
+      price.className = 'product-price';
+      price.textContent = `Giá tham khảo · ${new Intl.NumberFormat('vi-VN').format(productDetails.price)} ₫`;
+      descriptionBlock.append(title, subtitle, price);
 
       const categoryLabel = document.createElement('span');
       categoryLabel.className = 'product-category';
@@ -134,17 +73,34 @@
     });
   });
 
+  const shuffledProducts = [...productCards];
+  for (let index = shuffledProducts.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffledProducts[index], shuffledProducts[randomIndex]] = [shuffledProducts[randomIndex], shuffledProducts[index]];
+  }
+  const featuredProducts = new Set(shuffledProducts.slice(0, 6));
+
   productGrid.addEventListener('click', (event) => {
     const productButton = event.target.closest('.product-image');
     if (!productButton) return;
 
-    const { productName, productCategory, productImage } = productButton.dataset;
+    const { productName, productCategory, productImage, productDescription, productSpecs, productPrice } = productButton.dataset;
     productDetailImage.src = productImage;
     productDetailImage.alt = productName;
     productDetailCategory.textContent = productCategory;
-    productDetailTitle.textContent = `About ${productName}`;
-    productDetailDescription.textContent = `${productName} là thiết kế thuộc danh mục ${productCategory.toLowerCase()}, được tuyển chọn cho không gian sống tinh tế và tiện nghi. Liên hệ VENUS để được tư vấn chi tiết về chất liệu, kích thước và tình trạng sản phẩm.`;
-    productDetailContact.href = `mailto:hello@venus.vn?subject=${encodeURIComponent(`Tư vấn sản phẩm ${productName}`)}`;
+    productDetailTitle.textContent = productName;
+    productDetailDescription.textContent = productDescription;
+    productDetailPrice.textContent = `Giá tham khảo · ${new Intl.NumberFormat('vi-VN').format(Number(productPrice))} ₫`;
+    const specifications = JSON.parse(productSpecs);
+    productDetailSpecs.replaceChildren(...specifications.flatMap(([label, value]) => {
+      const term = document.createElement('dt');
+      term.textContent = label;
+      const detail = document.createElement('dd');
+      detail.textContent = value;
+      return [term, detail];
+    }));
+    productDetailContact.href = `mailto:hoaiminh@venus.vn?subject=${encodeURIComponent(`Tư vấn sản phẩm ${productName}`)}`;
+    document.querySelector('#product-detail-full').href = `product.html?${new URLSearchParams({ category: productCategory, name: productName })}`;
     productDetail.showModal();
   });
 
@@ -157,49 +113,27 @@
   });
 
   const closeMenus = () => {
-    header.classList.remove('menu-active', 'mobile-active');
-    productsTrigger.setAttribute('aria-expanded', 'false');
-    megaMenu.setAttribute('aria-hidden', 'true');
-    mobileToggle.setAttribute('aria-expanded', 'false');
-    mobileNavigation.setAttribute('aria-hidden', 'true');
-  };
-
-  const toggleProductsMenu = () => {
-    const willOpen = !header.classList.contains('menu-active');
-    header.classList.toggle('menu-active', willOpen);
-    productsTrigger.setAttribute('aria-expanded', String(willOpen));
-    megaMenu.setAttribute('aria-hidden', String(!willOpen));
     header.classList.remove('mobile-active');
     mobileToggle.setAttribute('aria-expanded', 'false');
     mobileNavigation.setAttribute('aria-hidden', 'true');
   };
-
-  productsTrigger.addEventListener('click', (event) => {
-    event.stopPropagation();
-    toggleProductsMenu();
-  });
-
   mobileToggle.addEventListener('click', () => {
     const willOpen = !header.classList.contains('mobile-active');
     header.classList.toggle('mobile-active', willOpen);
     mobileToggle.setAttribute('aria-expanded', String(willOpen));
     mobileNavigation.setAttribute('aria-hidden', String(!willOpen));
-    header.classList.remove('menu-active');
-    productsTrigger.setAttribute('aria-expanded', 'false');
-    megaMenu.setAttribute('aria-hidden', 'true');
   });
 
-  scrim.addEventListener('click', closeMenus);
   document.addEventListener('click', (event) => {
     if (!header.contains(event.target)) closeMenus();
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       closeMenus();
-      productsTrigger.focus();
+      mobileToggle.focus();
     }
   });
-  [...megaMenu.querySelectorAll('a'), ...mobileNavigation.querySelectorAll('a')].forEach((link) => {
+  mobileNavigation.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenus);
   });
 
@@ -211,7 +145,9 @@
       button.setAttribute('aria-pressed', String(isActive));
     });
     productCards.forEach((card, index) => {
-      const isVisible = category === 'all' || card.dataset.category === category;
+      const isVisible = category === 'featured'
+        ? featuredProducts.has(card)
+        : card.dataset.category === category;
       card.classList.toggle('is-hidden', !isVisible);
       const image = card.querySelector('img');
       if (isVisible && image.dataset.src) {
@@ -227,21 +163,10 @@
   filterButtons.forEach((button) => {
     button.addEventListener('click', () => setFilter(button.dataset.filter));
   });
-  document.querySelectorAll('[data-filter-link]').forEach((link) => {
-    link.addEventListener('click', () => setFilter(link.dataset.filterLink));
-  });
-  setFilter(null);
+  setFilter('featured');
 
   const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
 
-  const newsletterForm = document.querySelector('.newsletter-form');
-  newsletterForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const email = newsletterForm.querySelector('input').value.trim();
-    if (!email) return;
-    document.querySelector('.newsletter-status').textContent = 'Cảm ơn bạn — VENUS sẽ sớm gửi lời chào.';
-    newsletterForm.reset();
-  });
 })();
