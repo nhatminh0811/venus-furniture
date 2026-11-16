@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="catalog-data.js" defer></script>
+  <script src="cart.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -24,7 +25,7 @@
         <a class="nav-link" href="catalog.html">Products</a>
         <a class="nav-link" href="#rooms">Rooms</a>
         <a class="nav-link" href="projects.html">Không gian</a>
-        <a class="nav-link" href="#philosophy">Philosophy</a>
+        <a class="nav-link" href="about.html">About us</a>
       </nav>
       <a class="brand" href="#top" aria-label="VENUS — về đầu trang">VENUS<span class="brand-period">.</span></a>
       <nav class="primary-nav nav-right" aria-label="Thông tin VENUS">
@@ -33,7 +34,7 @@
       </nav>
     </div>
     <nav class="mobile-navigation" id="mobile-navigation" aria-label="Điều hướng di động" aria-hidden="true">
-      <a href="catalog.html">Products</a><a href="projects.html">Không gian</a><a href="#philosophy">Philosophy</a><a href="designs.html">Designer</a><a href="contact.html">Contact</a>
+      <a href="catalog.html">Products</a><a href="projects.html">Không gian</a><a href="about.html">About us</a><a href="designs.html">Designer</a><a href="contact.html">Contact</a>
     </nav>
   </header>
   <main id="main">
@@ -51,7 +52,7 @@
     <section class="intro section-pad" id="philosophy">
       <span class="eyebrow">THE VENUS APPROACH</span>
       <p class="intro-statement">Chúng tôi tin rằng vẻ đẹp thực sự không phô trương — nó được cảm nhận trong <em>từng đường nét, chất liệu và khoảnh khắc sống.</em></p>
-      <a class="text-link dark-link" href="designs.html">Tìm hiểu triết lý của chúng tôi <span aria-hidden="true">↗</span></a>
+      <a class="text-link dark-link" href="about.html">Tìm hiểu về VENUS <span aria-hidden="true">↗</span></a>
     </section>
 
     <section class="news-section section-pad" id="rooms">
@@ -109,6 +110,7 @@
           <h2 id="product-detail-title"></h2>
           <p id="product-detail-description"></p>
           <p class="product-price-detail" id="product-detail-price"></p>
+          <div id="product-detail-cart-action"></div>
           <dl class="product-spec-list" id="product-detail-specs"></dl>
           <p class="product-data-note">Giá, mô tả và thông số chỉ mang tính tham khảo. Vui lòng liên hệ để xác nhận giá bán chính thức.</p>
           <a class="text-link dark-link" id="product-detail-full" href="catalog.html">Xem thông tin sản phẩm <span aria-hidden="true">↗</span></a>
@@ -120,7 +122,7 @@
     <section class="manifesto" id="designer">
       <img src="images/optimized/sofas/Sofa Khối Tĩnh.jpg" alt="Chi tiết chất liệu và đường nét chế tác nội thất" loading="lazy">
       <div class="manifesto-overlay"></div>
-      <div class="manifesto-copy"><span class="eyebrow">MADE TO BE LIVED IN</span><h2>Vẻ đẹp của<br><em>những điều bền lâu.</em></h2><a class="text-link light-link" href="#philosophy">Khám phá câu chuyện VENUS <span aria-hidden="true">↗</span></a></div>
+      <div class="manifesto-copy"><span class="eyebrow">MADE TO BE LIVED IN</span><h2>Vẻ đẹp của<br><em>những điều bền lâu.</em></h2><a class="text-link light-link" href="about.html">Khám phá câu chuyện VENUS <span aria-hidden="true">↗</span></a></div>
     </section>
 
     <section class="story-strip section-pad" id="real-estate">

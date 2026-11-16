@@ -35,7 +35,8 @@
     price.className = 'page-product-price';
     price.textContent = `Giá tham khảo · ${formatPrice(product.price)}`;
     link.append(image, name, category, price);
-    card.append(link);
+    const addToCart = window.VENUS_CART.createButton(product);
+    card.append(link, addToCart);
     return card;
   };
 
@@ -134,6 +135,7 @@
       eyebrow.textContent = product.category;
       const title = document.createElement('h1');
       title.textContent = product.name;
+      const addToCart = window.VENUS_CART.createButton(product);
       const price = document.createElement('p');
       price.className = 'product-price-detail';
       price.textContent = `Giá tham khảo · ${formatPrice(product.price)}`;
@@ -155,7 +157,7 @@
       const note = document.createElement('p');
       note.className = 'product-data-note';
       note.textContent = 'Giá, mô tả và thông số chỉ mang tính tham khảo. Vui lòng liên hệ để xác nhận giá bán chính thức.';
-      copy.append(eyebrow, title, price, description, specs, contact, note);
+      copy.append(eyebrow, title, price, addToCart, description, specs, contact, note);
       productContent.append(visual, copy);
     }
   }

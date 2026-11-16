@@ -13,6 +13,7 @@
   const productDetailPrice = document.querySelector('#product-detail-price');
   const productDetailSpecs = document.querySelector('#product-detail-specs');
   const productDetailContact = document.querySelector('#product-detail-contact');
+  const productDetailCartAction = document.querySelector('#product-detail-cart-action');
   const filterButtons = [...document.querySelectorAll('.filter-button')];
 
   const catalog = window.VENUS_CATALOG;
@@ -22,8 +23,9 @@
       const filename = typeof product === 'string' ? product : product.filename;
       const name = typeof product === 'string' ? filename.replace(/\.[^.]+$/, '').trim() : product.name;
       const productDetails = typeof product === 'string' ? null : product.details;
+      const imagePath = `images/optimized/${folder}/${filename}`;
       const image = document.createElement('img');
-      image.dataset.src = `images/optimized/${folder}/${filename}`;
+      image.dataset.src = imagePath;
       image.alt = name;
       image.loading = 'lazy';
       image.decoding = 'async';
@@ -33,7 +35,7 @@
       imageLink.setAttribute('aria-label', `Xem chi tiết ${name}`);
       imageLink.dataset.productName = name;
       imageLink.dataset.productCategory = category;
-      imageLink.dataset.productImage = `images/optimized/${folder}/${filename}`;
+      imageLink.dataset.productImage = imagePath;
       imageLink.dataset.productDescription = productDetails.description;
       imageLink.dataset.productSpecs = JSON.stringify(productDetails.specs);
       imageLink.dataset.productPrice = String(productDetails.price);
@@ -67,7 +69,12 @@
       const card = document.createElement('article');
       card.className = 'product-card';
       card.dataset.category = category;
-      card.append(imageLink, details);
+      card.append(imageLink, details, window.VENUS_CART.createButton({
+        name,
+        category,
+        price: productDetails.price,
+        image: imagePath,
+      }));
       productGrid.append(card);
       productCards.push(card);
     });
@@ -99,6 +106,12 @@
       detail.textContent = value;
       return [term, detail];
     }));
+    productDetailCartAction.replaceChildren(window.VENUS_CART.createButton({
+      name: productName,
+      category: productCategory,
+      price: Number(productPrice),
+      image: productImage,
+    }));
     productDetailContact.href = `mailto:hoaiminh@venus.vn?subject=${encodeURIComponent(`Tư vấn sản phẩm ${productName}`)}`;
     document.querySelector('#product-detail-full').href = `product.html?${new URLSearchParams({ category: productCategory, name: productName })}`;
     productDetail.showModal();
@@ -110,6 +123,7 @@
   });
   productDetail.addEventListener('close', () => {
     productDetailImage.removeAttribute('src');
+    productDetailCartAction.replaceChildren();
   });
 
   const closeMenus = () => {
