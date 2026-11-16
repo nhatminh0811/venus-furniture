@@ -132,6 +132,12 @@
 
   const desktopNav = document.querySelector('.nav-right, .page-header nav, .design-header, .about-header nav');
   if (desktopNav) {
+    const accountLink = document.createElement('a');
+    accountLink.className = 'account-header-link';
+    accountLink.href = 'login.html';
+    accountLink.textContent = 'Đăng nhập';
+    desktopNav.append(accountLink);
+
     const link = document.createElement('a');
     link.className = 'cart-header-link';
     link.href = 'cart.html';
@@ -145,6 +151,12 @@
   }
   const mobileNav = document.querySelector('.mobile-navigation');
   if (mobileNav) {
+    const accountLink = document.createElement('a');
+    accountLink.className = 'account-header-link';
+    accountLink.href = 'login.html';
+    accountLink.textContent = 'Đăng nhập';
+    mobileNav.append(accountLink);
+
     const link = document.createElement('a');
     link.className = 'cart-header-link';
     link.href = 'cart.html';

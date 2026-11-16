@@ -4,6 +4,7 @@
 .about-brand span,.about-footer-brand span{color:#c5a059}
 .about-header nav{display:flex;flex-wrap:wrap;gap:clamp(16px,2.4vw,36px);align-items:center}
 .about-header nav a,.about-footer>a:not(.about-footer-brand){color:#c9c5be;font-size:9px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.about-header nav .account-header-link,.about-header nav .cart-header-link{color:#c9c5be}
 .about-header nav a:hover,.about-header nav a[aria-current=page],.about-footer>a:hover{color:#d5b675}
 .about-main{width:min(1440px,calc(100% - 10.4vw));margin:0 auto}
 .about-hero{position:relative;display:grid;min-height:min(720px,78vw);grid-template-columns:.94fr 1.06fr;align-items:center;gap:5vw;padding:clamp(50px,8vw,116px) 0 100px}
